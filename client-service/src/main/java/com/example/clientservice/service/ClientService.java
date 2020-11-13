@@ -1,6 +1,8 @@
 package com.example.clientservice.service;
 
 import com.example.clientservice.model.Client;
+import com.example.clientservice.model.Portfolio;
+import com.example.clientservice.model.Stock;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -42,5 +44,12 @@ public class ClientService {
         Client client = this.retrieveClient(clientId);
         clients.remove(client);
         return "Client deleted successfully";
+    }
+
+    public List<Portfolio> createPortfolio(int clientId, List<Stock> stocks ){
+        Client client = this.retrieveClient(clientId);
+        client.createPortfolio(stocks);
+        return client.getPortfolio();
+
     }
 }
